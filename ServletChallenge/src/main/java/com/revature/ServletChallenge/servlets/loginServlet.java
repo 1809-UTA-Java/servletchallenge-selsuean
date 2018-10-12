@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 public class loginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		RequestDispatcher rd = req.getRequestDispatcher("index.html");
 		rd.forward(req, resp);
 	}

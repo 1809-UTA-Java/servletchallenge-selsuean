@@ -3,6 +3,7 @@ package com.revature.ServletChallenge.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,15 +21,27 @@ public class homeServlet extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 		String arg1 = req.getParameter("name");
 		String arg2 = req.getParameter("password");
-		
-		
+
 		if (arg1.equals(username) && arg2.equals(password)) {
-			HttpSession session = req.getSession();
-			session.setAttribute(username, "developer");
+			HttpSession session = req.getSession(true);
+			session.setAttribute("username", arg1);
+
 			pw.println("Hello " + arg1 + "!");
 			pw.close();
 		} else {
-			resp.sendRedirect("login");
+			RequestDispatcher rd = req.getRequestDispatcher("index.html");
+			// resp.sendRedirect("login");
+			PrintWriter out = resp.getWriter();
+			out.println("<font color=red>Either username or password is wrong. Try again.</font>");
+			rd.include(req, resp);
 		}
+	}
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession(false);
+		String arg1 = (String) session.getAttribute("username");
+		PrintWriter pw = resp.getWriter();
+		pw.println("Hello again " + arg1 + "!");
+		pw.close();
 	}
 }
