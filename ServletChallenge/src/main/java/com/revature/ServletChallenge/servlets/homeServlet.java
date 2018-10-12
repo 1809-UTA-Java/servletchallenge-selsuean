@@ -39,9 +39,15 @@ public class homeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
-		String arg1 = (String) session.getAttribute("username");
 		PrintWriter pw = resp.getWriter();
-		pw.println("Hello again " + arg1 + "!");
-		pw.close();
+		if (session.getAttribute("username") != null) {
+
+			String arg1 = (String) session.getAttribute("username");
+			
+			pw.println("Hello again " + arg1 + "!");
+			pw.close();
+		} else {
+			pw.println("Error !");
+		}
 	}
 }
