@@ -40,7 +40,7 @@ public class homeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
 		PrintWriter pw = resp.getWriter();
-		if (session.getAttribute("username") != null) {
+		if (session != null) {
 
 			String arg1 = (String) session.getAttribute("username");
 			

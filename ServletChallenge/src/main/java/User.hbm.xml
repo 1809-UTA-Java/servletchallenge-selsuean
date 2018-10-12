@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://">
+
+<!-- id is like a uniqe/special property, like the primary key -->
+<hibernate-mapping>
+	<class 
+		name="com.revature.model.Users"
+		table="Users">
+		<id name="id" column="id"></id>
+		<property name="username" column="username"></property>
+		<property name="password" column="password"></property>
+		
+	</class>
+</hibernate-mapping>
